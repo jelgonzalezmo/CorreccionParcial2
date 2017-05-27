@@ -14,7 +14,7 @@ import java.util.Scanner;
  *
 
  */
-public class BaseDeDatos {
+public class BDatos {
 
     public static ArrayList<Ciudad> ciudades = new ArrayList<>();
 

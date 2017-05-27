@@ -5,7 +5,7 @@
  */
 package Vista;
 
-import Logica.BaseDeDatos;
+import Logica.BDatos;
 import Logica.Ciudad;
 
 import Logica.EstacionMet;
@@ -21,35 +21,30 @@ import java.util.logging.Logger;
 
 /**
  *
- 
+ *
  */
 public class Main {
 
-    public static void MostrarPromedios() {
-        for (Ciudad ciudad : BaseDeDatos.ciudades) {
+    public static void VerPromedios() {
+        for (Ciudad ciudad : BDatos.ciudades) {
             for (EstacionMet estacion : ciudad.getEstaciones()) {
                 System.out.println(estacion.PromedioAT() + " " + estacion.PromedioCA() + " " + estacion.PromedioNEL());
             }
         }
     }
 
-    public static void main(String[] args) {
-
-        try {
-            BaseDeDatos.CargarDatos("Archivo.txt");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public static void main(String[] args) throws FileNotFoundException {
+        BDatos.CargarDatos("Archivo.txt");
         System.out.println("Elija una opcion");
         System.out.println("1.Registrar nuevas estaciones");
         System.out.println("2.Ver promedio de  los datos de los sensores");
         Scanner leer = new Scanner(System.in);
         int opcion = leer.nextInt();
         if (opcion == 1) {
-            BaseDeDatos.leerNuevasEstaciones();
+            BDatos.leerNuevasEstaciones();
         }
         if (opcion == 2) {
-            MostrarPromedios();
+            VerPromedios();
         }
     }
 }
